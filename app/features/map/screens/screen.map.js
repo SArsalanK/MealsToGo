@@ -3,13 +3,14 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import MapView from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 
-import AppText from '../../../../components/AppText'
-import { theme } from '../../../../infrastructure/theme';
-import { SearchContaier } from '../search.component';
-import { LocationContext } from '../../../../services/location/location.context';
-import { RestaurantsContext } from '../../../../services/restaurants/restaurants.context';
+import AppText from '../../../components/AppText'
+import { theme } from '../../../infrastructure/theme';
+import { SearchContaier } from '../components/search.component';
+import { LocationContext } from '../../../services/location/location.context';
+import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
+import MapCalloutComponent from '../components/map-callout.component';
 
-export default function MapScreen() {
+export default function MapScreen({ navigation }) {
 
     const { keyword, search, location } = useContext(LocationContext)
     const { restaurants, isLoading, error } = useContext(RestaurantsContext)
@@ -32,14 +33,19 @@ export default function MapScreen() {
         <View style={styles.container}>
             <SearchContaier />
             <MapView style={styles.map} region={{ latitude: lat, longitude: lng, latitudeDelta: latDelta, longitudeDelta: 0.02 }} >
-                {
-
-                    // restaurants.map((restaurant) => {
-
-                    //     return null;
-
-                    // })
-                }
+                {restaurants.map((restaurant) => {
+                    return <MapView.Marker
+                        key={restaurant.name}
+                        title={restaurant.name}
+                        coordinate={{
+                            longitude: restaurant.geometry.location.lng,
+                            latitude: restaurant.geometry.location.lat,
+                        }}>
+                        <MapView.Callout onPress={() => navigation.navigate('RestaurantDetail', restaurant = { restaurant })}>
+                            <MapCalloutComponent restaurant={restaurant} />
+                        </MapView.Callout>
+                    </MapView.Marker>
+                })}
             </MapView>
         </View>
     )
@@ -54,4 +60,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
+    callout: {
+
+    }
 });

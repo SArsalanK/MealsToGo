@@ -8,16 +8,20 @@ import AppText from '../../../components/AppText';
 import { theme } from '../../../infrastructure/theme/index'
 import star from '../../../assets/star'
 import open from '../../../assets/open'
+import FavouriteComponent from '../../../components/favoutites/favourite.component';
 
-export default function ResturantInfoCard({ restaurant = [] }) {
+export default function ResturantInfoCard({ restaurant }) {
+
+    // console.log("restaurant: ", restaurant)
 
     const ratingArray = Array.from(new Array(Math.floor(restaurant.rating)))
 
     return (
         <View style={styles.listContainer}>
             <Card elevation={theme.space[1]}>
-                <Card.Cover source={{ uri: restaurant.photos[0] }} />
-                <View style={{ marginVertical: theme.space[1], padding: theme.space[3] }}>
+                <FavouriteComponent restaurant={restaurant} />
+                <Card.Cover style={styles.cardCover} source={{ uri: restaurant.photos[0] }} />
+                <View style={{ padding: theme.space[3] }}>
                     <AppText fontFamily={fonts.heading} fontSize={theme.fontSizes.title} >{restaurant.name}</AppText>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         {ratingArray && <View style={{ marginVertical: theme.space[1], flexDirection: 'row' }}>
@@ -41,6 +45,10 @@ export default function ResturantInfoCard({ restaurant = [] }) {
 const styles = StyleSheet.create({
     listContainer: {
         padding: theme.space[2],
-
     },
+    cardCover: {
+        borderRadius: theme.sizes[1],
+        backgroundColor: theme.colors.bg.primary,
+        margin: theme.space[2],
+    }
 })

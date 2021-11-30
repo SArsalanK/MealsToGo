@@ -5,11 +5,11 @@ import { Searchbar } from 'react-native-paper';
 import { theme } from '../../../infrastructure/theme';
 import { LocationContext } from '../../../services/location/location.context';
 
-export const SearchContaier = () => {
+export const SearchContaier = ({ isFavouritesToggeled, onFavouritesToggled }) => {
     const { keyword, search } = useContext(LocationContext)
     const [searchKeyword, setSearchKeyword] = useState(keyword)
 
-    return (<Searchbar style={styles.searchBarContainer} placeholder={'Search for a location'} value={searchKeyword} onSubmitEditing={() => search(searchKeyword)} onChangeText={(text) => setSearchKeyword(text)} />)
+    return (<Searchbar icon={isFavouritesToggeled ? 'heart' : 'heart-outline'} onIconPress={onFavouritesToggled} style={styles.searchBarContainer} placeholder={'Search for a location'} value={searchKeyword} onSubmitEditing={() => search(searchKeyword)} onChangeText={(text) => setSearchKeyword(text)} />)
 }
 
 const styles = StyleSheet.create({
