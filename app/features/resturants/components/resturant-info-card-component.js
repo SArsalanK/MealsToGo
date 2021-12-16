@@ -12,13 +12,11 @@ import FavouriteComponent from '../../../components/favoutites/favourite.compone
 
 export default function ResturantInfoCard({ restaurant }) {
 
-    // console.log("restaurant: ", restaurant)
-
     const ratingArray = Array.from(new Array(Math.floor(restaurant.rating)))
 
     return (
         <View style={styles.listContainer}>
-            <Card elevation={theme.space[1]}>
+            <Card elevation={2}>
                 <FavouriteComponent restaurant={restaurant} />
                 <Card.Cover style={styles.cardCover} source={{ uri: restaurant.photos[0] }} />
                 <View style={{ padding: theme.space[3] }}>

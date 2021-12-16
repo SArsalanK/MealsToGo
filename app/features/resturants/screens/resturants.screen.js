@@ -3,20 +3,19 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, StatusBar } from 'r
 
 import ResturantInfoCard from '../components/resturant-info-card-component';
 import { ActivityIndicator, Colors } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { theme } from '../../../infrastructure/theme';
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
 import { FavouritesContext } from '../../../services/favourites/favourites.context';
 import { SearchContaier } from '../components/search.component';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import FavouritesBarComponent from '../../../components/favoutites/favourites-bar.component';
-
+import { FadeInView } from '../../../components/animations/fade.animation';
 
 export default function ResturantScreen({ navigation }) {
 
     const { restaurants, isLoading, error } = useContext(RestaurantsContext)
     const [isToggled, setIsToggled] = useState(false)
-
     const { favourites } = useContext(FavouritesContext);
 
     return (
@@ -26,7 +25,9 @@ export default function ResturantScreen({ navigation }) {
             {isToggled && <FavouritesBarComponent onNavigate={navigation.navigate} favourites={favourites} />}
             <FlatList
                 data={restaurants}
-                renderItem={({ item }) => { return (<TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail', { restaurant: item })}><ResturantInfoCard restaurant={item} /></TouchableOpacity>) }}
+                renderItem={({ item }) => {
+                    return (<TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail', { restaurant: item })}><FadeInView ><ResturantInfoCard restaurant={item} /></FadeInView></TouchableOpacity>)
+                }}
                 keyExtractor={(item) => item.name}
                 contentContainerStyle={{ marginBottom: theme.space[2] }}
             />

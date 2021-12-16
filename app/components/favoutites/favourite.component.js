@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { Button } from 'react-native-paper';
 import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from '../../infrastructure/theme'

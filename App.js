@@ -8,9 +8,6 @@ import { initializeApp } from 'firebase/app';
 
 import { theme } from './app/infrastructure/theme';
 import { Navigation } from './app/infrastructure/navigation';
-import { RestaurantsContextProvider } from './app/services/restaurants/restaurants.context';
-import { LocationContextProvider } from './app/services/location/location.context';
-import { FavouritesContextProvider } from './app/services/favourites/favourites.context';
 import { AuthenticationContextProvider } from './app/services/authentication/authentication.context';
 
 // Initialize Firebase
@@ -43,14 +40,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <AuthenticationContextProvider>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
-      </AuthenticationContextProvider>
+        <Navigation />
+      </AuthenticationContextProvider >
       <ExpoStatusBar style='auto' />
     </View >
   );

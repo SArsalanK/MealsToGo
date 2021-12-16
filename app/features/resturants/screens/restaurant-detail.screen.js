@@ -21,66 +21,70 @@ export default function RestaurantDetailScreen({ navigation, route }) {
             <ScrollView>
                 <List.Accordion
                     title="Breakfast"
+                    titleStyle={styles.accordianFont}
                     style={styles.itemBackgroundColor}
                     left={(props) => <List.Icon {...props} icon="bread-slice" />}
                     expanded={breakfastExpanded}
                     onPress={() => setBreakfastExpanded(!breakfastExpanded)}
                 >
                     <Divider />
-                    <List.Item title="Eggs Benedict" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Eggs Benedict" />
                     <Divider />
-                    <List.Item title="Classic Breakfast" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Classic Breakfast" />
                 </List.Accordion>
                 <Divider />
                 <List.Accordion
                     title="Lunch"
+                    titleStyle={styles.accordianFont}
                     style={styles.itemBackgroundColor}
                     left={(props) => <List.Icon {...props} icon="hamburger" />}
                     expanded={lunchExpanded}
                     onPress={() => setLunchExpanded(!lunchExpanded)}
                 >
                     <Divider />
-                    <List.Item title="Burger w/ Fries" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Burger w/ Fries" />
                     <Divider />
-                    <List.Item title="Steak Sandwich" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Steak Sandwich" />
                     <Divider />
-                    <List.Item title="Mushroom Soup" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Mushroom Soup" />
                     <Divider />
                 </List.Accordion>
                 <Divider />
                 <List.Accordion
                     title="Dinner"
+                    titleStyle={styles.accordianFont}
                     style={styles.itemBackgroundColor}
                     left={(props) => <List.Icon {...props} icon="food-variant" />}
                     expanded={dinnerExpanded}
                     onPress={() => setDinnerExpanded(!dinnerExpanded)}
                 >
                     <Divider />
-                    <List.Item title="Spaghetti Bolognese" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Spaghetti Bolognese" />
                     <Divider />
-                    <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Veal Cutlet with Chicken Mushroom Rotini" />
                     <Divider />
-                    <List.Item title="Steak Frites" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Steak Frites" />
                 </List.Accordion>
                 <Divider />
 
                 <List.Accordion
                     title="Drinks"
+                    titleStyle={styles.accordianFont}
                     style={styles.itemBackgroundColor}
                     left={(props) => <List.Icon {...props} icon="cup" />}
                     expanded={drinksExpanded}
                     onPress={() => setDrinksExpanded(!drinksExpanded)}
                 >
                     <Divider />
-                    <List.Item title="Coffee" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Coffee" />
                     <Divider />
-                    <List.Item title="Tea" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Tea" />
                     <Divider />
-                    <List.Item title="Modelo" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Modelo" />
                     <Divider />
-                    <List.Item title="Coke" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Coke" />
                     <Divider />
-                    <List.Item title="Fanta" />
+                    <List.Item titleStyle={styles.accordianItemFont} title="Fanta" />
                 </List.Accordion>
             </ScrollView>
         </View>
@@ -93,6 +97,12 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.bg.primary
     },
     itemBackgroundColor: {
-        backgroundColor: theme.colors.bg.primary
+        backgroundColor: theme.colors.bg.primary,
+    },
+    accordianFont: {
+        fontFamily: theme.fonts.heading
+    },
+    accordianItemFont: {
+        fontFamily: theme.fonts.monospace
     }
 });
